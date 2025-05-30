@@ -21,6 +21,8 @@ file(GLOB_RECURSE TEST_FILES "${CMAKE_CURRENT_SOURCE_DIR}/local-testing/*.cpp")
 add_executable(${PROJECT_NAME}
         ${SOURCES}
         ${TEST_FILES}
+        include/si/allocator.hpp
+        include/si/type_traits.hpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
