@@ -214,6 +214,14 @@ namespace si {
     template <typename T, typename U> struct is_member_pointer<T U::*> : true_type {};
     template <typename T> constexpr bool is_member_pointer_v = is_member_pointer<T>::value;
 
+    template <typename T> struct is_member_object_pointer : false_type {};
+    template <typename T, typename U> struct is_member_object_pointer<T U::*> : integral_constant<bool, !is_function_v<T>> {};
+    template <typename T> constexpr bool is_member_object_pointer_v = is_member_object_pointer<T>::value;
+
+    template <typename T> struct is_member_function_pointer : false_type {};
+    template <typename T, typename U> struct is_member_function_pointer<T U::*> : integral_constant<bool, is_function_v<T>> {};
+    template <typename T> constexpr bool is_member_function_pointer_v = is_member_function_pointer<T>::value;
+
     template<typename T>
     struct decay {
     private:
