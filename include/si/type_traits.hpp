@@ -222,6 +222,14 @@ namespace si {
     template <typename T, typename U> struct is_member_function_pointer<T U::*> : integral_constant<bool, is_function_v<T>> {};
     template <typename T> constexpr bool is_member_function_pointer_v = is_member_function_pointer<T>::value;
 
+    template <typename T> struct is_lvalue_reference : false_type {};
+    template <typename T> struct is_lvalue_reference<T&> : true_type {};
+    template <typename T> constexpr bool is_lvalue_reference_v = is_lvalue_reference<T>::value;
+
+    template <typename T> struct is_rvalue_reference : false_type {};
+    template <typename T> struct is_rvalue_reference<T&&> : true_type {};
+    template <typename T> constexpr bool is_rvalue_reference_v = is_rvalue_reference<T>::value;
+
     template<typename T>
     struct decay {
     private:
