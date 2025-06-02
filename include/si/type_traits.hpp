@@ -4,11 +4,8 @@
 
 #ifndef TYPE_TRAITS_HPP
 #define TYPE_TRAITS_HPP
-// if any cpp verison below c++20, define this
 
-#if !defined(__cpp_concepts) || (__cpp_concepts < 201907)
-#define SI_NO_CONCEPTS
-#endif
+#include "../compat/sconfig.h"
 
 #ifdef SI_NO_CONCEPTS
 namespace si::type_traits {
@@ -27,26 +24,14 @@ namespace si::concepts {
 }
 #endif // SI_NO_CONCEPTS
 
+#include "../impl/type_traits/remove_reference.h"
+#include "../impl/type_traits/remove_const.h"
+#include "../impl/type_traits/remove_volatile.h"
+
 namespace si {
 
     template <typename...> using void_t = void;
-    typedef nullptr_t decltype(nullptr);
-
-    template <typename T> struct remove_reference {typedef T type;};
-    template <typename T> struct remove_reference<T&> {typedef T type;};
-    template <typename T> struct remove_reference<T&&> {typedef T type;};
-
-    template <typename T> using remove_reference_t = typename remove_reference<T>::type;
-
-    template <typename T> struct remove_const {typedef T type;};
-    template <typename T> struct remove_const<const T> {typedef T type;};
-
-    template <typename T> using remove_const_t = typename remove_const<T>::type;
-
-    template <typename T> struct remove_volatile {typedef T type;};
-    template <typename T> struct remove_volatile<volatile T> {typedef T type;};
-
-    template <typename T> using remove_volatile_t = typename remove_volatile<T>::type;
+    using nullptr_t = decltype(nullptr);
 
     template <typename T> struct remove_cv {typedef T type;};
     template <typename T> struct remove_cv<const T> {typedef T type;};
@@ -176,27 +161,24 @@ namespace si {
     template <typename T> struct is_arithmetic<is_floating_point<T>> : true_type {};
     template <typename T> constexpr bool is_arithmetic_v = is_arithmetic<T>::value;
 
-#ifdef __has_feature(__is_enum)
-    template <typename T> struct is_enum : false_type {};
-    template <typename T> struct is_enum<T> : integral_constant<bool, __is_enum(T)> {};
+#if __has_builtin(__is_enum)
+    template <typename T> struct is_enum : integral_constant<bool, __is_enum(T)> {};
 #else
     #include <type_traits>
     template <typename T> struct is_enum : integral_constant<bool, std::is_enum_v<T>> {};
 #endif
     template <typename T> constexpr bool is_enum_v = is_enum<T>::value;
 
-#ifdef __has_feature(__is_union)
-    template <typename T> struct is_union : false_type {};
-    template <typename T> struct is_union<T> : integral_constant<bool, __is_union(T)> {};
+#ifdef __has_builtin(__is_union)
+    template <typename T> struct is_union : integral_constant<bool, __is_union(T)> {};
 #else
     #include <type_traits>
     template <typename T> struct is_union : integral_constant<bool, std::is_union_v<T>> {};
 #endif
     template <typename T> constexpr bool is_union_v = is_union<T>::value;
 
-#ifdef __has_feature(__is_class)
-    template <typename T> struct is_class : false_type {};
-    template <typename T> struct is_class<T> : integral_constant<bool, __is_class(T)> {};
+#ifdef SI_TIMER(__is_class)
+    template <typename T> struct is_class : integral_constant<bool, __is_class(T)> {};
 #else
     #include <type_traits>
     template <typename T> struct is_class : integral_constant<bool, std::is_class_v<T>> {};
@@ -229,6 +211,41 @@ namespace si {
     template <typename T> struct is_rvalue_reference : false_type {};
     template <typename T> struct is_rvalue_reference<T&&> : true_type {};
     template <typename T> constexpr bool is_rvalue_reference_v = is_rvalue_reference<T>::value;
+
+#ifdef __has_feature(__is_trivially_copyable)
+
+    template <typename T> struct is_trivially_copyable : integral_constant<bool, __is_trivially_copyable(T)> {};
+
+#else
+
+    template <typename T> struct is_trivially_copyable : false_type {};
+    template <typename T> struct is_trivially_copyable<const T> : is_trivially_copyable<T> {};
+    template <typename T> struct is_trivially_copyable<volatile T> : is_trivially_copyable<T> {};
+    template <typename T> struct is_trivially_copyable<const volatile T> : is_trivially_copyable<T> {};
+    template <typename T> struct is_trivially_copyable<T*> : true_type {};
+    template <typename T, size_t N> struct is_trivially_copyable<T[N]> : is_trivially_copyable<T> {};
+    template <> struct is_trivially_copyable<bool> : true_type {};
+    template <> struct is_trivially_copyable<char> : true_type {};
+    template <> struct is_trivially_copyable<signed char> : true_type {};
+    template <> struct is_trivially_copyable<unsigned char> : true_type {};
+    template <> struct is_trivially_copyable<wchar_t> : true_type {};
+    template <> struct is_trivially_copyable<char16_t> : true_type {};
+    template <> struct is_trivially_copyable<char32_t> : true_type {};
+    template <> struct is_trivially_copyable<short> : true_type {};
+    template <> struct is_trivially_copyable<unsigned short> : true_type {};
+    template <> struct is_trivially_copyable<int> : true_type {};
+    template <> struct is_trivially_copyable<unsigned int> : true_type {};
+    template <> struct is_trivially_copyable<long> : true_type {};
+    template <> struct is_trivially_copyable<unsigned long> : true_type {};
+    template <> struct is_trivially_copyable<long long> : true_type {};
+    template <> struct is_trivially_copyable<unsigned long long> : true_type {};
+    template <> struct is_trivially_copyable<float> : true_type {};
+    template <> struct is_trivially_copyable<double> : true_type {};
+    template <> struct is_trivially_copyable<long double> : true_type {};
+
+#endif
+
+    template <typename T> constexpr bool is_trivially_copyable_v = is_trivially_copyable<T>::value;
 
     template<typename T>
     struct decay {

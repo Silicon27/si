@@ -10,3 +10,8 @@
 <br>
 
 **Si**, my own take on the standard template library, is a collection of tightly curated implementations, sprinkled with my own visions and ideas. It is designed to not be a direct replacement to the STL, rather an alternative to it. 
+
+
+> ![NOTE]\
+> Read the [contributing guide](CONTRIBUTING.md) to learn how to contribute to this project.
+
