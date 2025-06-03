@@ -12,8 +12,10 @@ int main() {
 
     auto my_block = alloc.allocate(10);
     for (int i = 0; i < 10; ++i) {
-        std::allocator_traits<si::allocator<int>>::construct(alloc, my_block + i, i);
+        si::allocator_traits<si::allocator<int>>::construct(alloc, my_block + i, i);
     }
+
+    si::allocator_traits<decltype(alloc)>::deallocate(alloc, my_block, 10);
 
     return 0;
 }

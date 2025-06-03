@@ -25,6 +25,8 @@ add_executable(${PROJECT_NAME}
         include/si/type_traits.hpp
         include/compat/compiler_features.hpp
         include/impl/type_traits/remove_reference.h
+        include/impl/memory/allocator_traits.h
+        include/impl/type_traits/remove_cv.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})

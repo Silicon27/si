@@ -10,14 +10,14 @@
 SI_NAMESPACE_START
 
 #if SI_HAS_FEATURE_TYPE_TRAITS
-template <typename T> struct remove_reference { using type = SI_REMOVE_REFERENCE(T); };
-template <typename T> using remove_reference_t = SI_REMOVE_REFERENCE(T);
+    template <typename T> struct remove_reference { using type = SI_REMOVE_REFERENCE(T); };
+    template <typename T> using remove_reference_t = SI_REMOVE_REFERENCE(T);
 #else
-template <typename T> struct remove_reference {typedef T type;};
-template <typename T> struct remove_reference<T&> {typedef T type;};
-template <typename T> struct remove_reference<T&&> {typedef T type;};
+    template <typename T> struct remove_reference {typedef T type;};
+    template <typename T> struct remove_reference<T&> {typedef T type;};
+    template <typename T> struct remove_reference<T&&> {typedef T type;};
 
-template <typename T>using remove_reference_t = typename remove_reference<T>::type;
+    template <typename T>using remove_reference_t = typename remove_reference<T>::type;
 #endif
 
 SI_NAMESPACE_END

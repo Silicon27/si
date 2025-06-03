@@ -24,21 +24,16 @@ namespace si::concepts {
 }
 #endif // SI_NO_CONCEPTS
 
+// include implementations
 #include "../impl/type_traits/remove_reference.h"
 #include "../impl/type_traits/remove_const.h"
 #include "../impl/type_traits/remove_volatile.h"
+#include "../impl/type_traits/remove_cv.h"
 
 namespace si {
 
     template <typename...> using void_t = void;
     using nullptr_t = decltype(nullptr);
-
-    template <typename T> struct remove_cv {typedef T type;};
-    template <typename T> struct remove_cv<const T> {typedef T type;};
-    template <typename T> struct remove_cv<volatile T> {typedef T type;};
-    template <typename T> struct remove_cv<const volatile T> {typedef T type;};
-
-    template <typename T> using remove_cv_t = typename remove_cv<T>::type;
 
     template <typename T> struct remove_extent {using type = T;};
     template <typename T> struct remove_extent<T[]> {using type = T;};

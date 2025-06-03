@@ -46,6 +46,8 @@
 #   define SI_REMOVE_REFERENCE(T) __remove_reference_t(T)
 #   define SI_REMOVE_CONST(T) __remove_const(T)
 #   define SI_REMOVE_VOLATILE(T) __remove_volatile(T)
+#   define SI_REMOVE_CV(T) __remove_cv(T)
+#   define SI_REMOVE_EXTENT(T) __remove_extent(T)
 #else
     // fallback to standard type traits
 #   include <type_traits>
@@ -59,6 +61,8 @@
 #   define SI_REMOVE_REFERENCE(T) std::remove_reference_t<T>
 #   define SI_REMOVE_CONST(T) std::remove_const_t<T>
 #   define SI_REMOVE_VOLATILE(T) std::remove_volatile_t<T>
+#   define SI_REMOVE_CV(T) std::remove_cv_t<T>
+#   define SI_REMOVE_EXTENT(T) std::remove_extent_t<T>
 #endif //SI_HAS_FEATURE_TYPE_TRAITS
 
 
