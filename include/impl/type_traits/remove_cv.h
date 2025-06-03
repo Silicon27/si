@@ -9,15 +9,16 @@
 
 SI_NAMESPACE_START
 
-#if SI_HAS_FEATURE_TYPE_TRAITS
+#if SI_HAS_BUILTIN(__remove_cv)
     template <typename T> struct remove_cv { using type = SI_REMOVE_CV(T); };
-    template <typename T> using remove_cv_t = SI_REMOVE_CV(T);
 #else
     template <typename T> struct remove_cv {typedef T type;};
     template <typename T> struct remove_cv<const T> {typedef T type;};
     template <typename T> struct remove_cv<volatile T> {typedef T type;};
     template <typename T> struct remove_cv<const volatile T> {typedef T type;};
+#endif
 
+#if __cplusplus >= 201402L
     template <typename T> using remove_cv_t = typename remove_cv<T>::type;
 #endif
 

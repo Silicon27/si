@@ -9,15 +9,16 @@
 
 SI_NAMESPACE_START
 
-#if SI_HAS_FEATURE_TYPE_TRAITS
+#if SI_HAS_BUILTIN(__remove_reference_t)
     template <typename T> struct remove_reference { using type = SI_REMOVE_REFERENCE(T); };
-    template <typename T> using remove_reference_t = SI_REMOVE_REFERENCE(T);
 #else
     template <typename T> struct remove_reference {typedef T type;};
     template <typename T> struct remove_reference<T&> {typedef T type;};
     template <typename T> struct remove_reference<T&&> {typedef T type;};
+#endif
 
-    template <typename T>using remove_reference_t = typename remove_reference<T>::type;
+#if __cplusplus >= 201402L
+    template <typename T> using remove_reference_t = typename remove_reference<T>::type;
 #endif
 
 SI_NAMESPACE_END

@@ -9,13 +9,14 @@
 
 SI_NAMESPACE_START
 
-#if SI_HAS_FEATURE_TYPE_TRAITS
+#if SI_HAS_BUILTIN(__remove_volatile)
     template <typename T> struct remove_volatile { using type = SI_REMOVE_VOLATILE(T); };
-    template <typename T> using remove_volatile_t = SI_REMOVE_VOLATILE(T);
 #else
     template <typename T> struct remove_volatile { typedef T type; };
     template <typename T> struct remove_volatile<volatile T> { typedef T type; };
+#endif
 
+#if __cplusplus >= 201402L
     template <typename T> using remove_volatile_t = typename remove_volatile<T>::type;
 #endif
 
