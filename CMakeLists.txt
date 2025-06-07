@@ -17,16 +17,17 @@ set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cpp")
 file(GLOB_RECURSE TEST_FILES "${CMAKE_CURRENT_SOURCE_DIR}/local-testing/*.cpp")
+file(GLOB_RECURSE IMPL_HEADERS "${INCLUDE_DIR}/impl/**/*.h" "${INCLUDE_DIR}/impl/**/*.hpp")
+
 
 add_executable(${PROJECT_NAME}
         ${SOURCES}
         ${TEST_FILES}
+        ${IMPL_HEADERS}
         include/si/memory.hpp
         include/si/type_traits.hpp
         include/compat/compiler_features.hpp
-        include/impl/type_traits/remove_reference.h
-        include/impl/memory/allocator_traits.h
-        include/impl/type_traits/remove_cv.h
+        include/impl/stddef/void_t.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})

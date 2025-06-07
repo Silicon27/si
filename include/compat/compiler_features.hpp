@@ -29,9 +29,15 @@
 #   define SI_HAS_FEATURE_TYPE_TRAITS 0
 #endif //COMPILER_FEATURES_HPP
 
-#ifndef __has_feature
-    #define __has_feature(x) 0  // default to false for unsupported compilers
-#endif
+#if defined(_MSC_VER)
+#   define SI_MSVC 1
+#   define SI_MSVC_VERSION _MSC_VER
+#   define SI_HAS_FEATURE_TYPE_TRAITS (_MSC_VER >= 1900) // MSVC 2015 and above
+#else // if defined(_MSC_VER)
+#   define SI_MSVC 0
+#   define SI_HAS_FEATURE_TYPE_TRAITS 0
+#endif // defined(_MSC_VER)
+
 
 #if SI_HAS_BUILTIN(__is_enum)
 #   define SI_IS_ENUM(T) __is_enum(T)

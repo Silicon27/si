@@ -7,17 +7,19 @@
 #define SI_VECTOR_HPP
 
 #include <initializer_list>
-#include <memory>
+#include "memory.hpp"
+#include "utility.hpp"
 
 namespace si {
 
     template <typename T>
-    class Vector {
+    class vector {
     public:
-        Vector(std::initializer_list<T> init);
-        ~Vector();
+        vector(std::initializer_list<T> init);
+        ~vector();
 
-        void push_back(std::initializer_list<T> init);
+        void append(std::initializer_list<T> init);
+        void push_back(const T& value);
         void reserve(const int new_cap);
 
         T& operator[](int pos);
@@ -26,12 +28,15 @@ namespace si {
         T* begin();
         T* end();
 
+        [[nodiscard]] size_t capacity() const noexcept;
+        [[nodiscard]] size_t size() const noexcept;
+
     private:
         T* _begin;
         T* _end;
-        int _num_elements;
-        int _capacity;
-        std::allocator<T> _alloc;
+        size_t _num_elements;
+        size_t _capacity;
+        si::allocator<T> _alloc;
     };
 
 } // namespace si

@@ -6,6 +6,7 @@
 #define SI_LIB_MEMORY_ALLOCATOR_TRAITS_H
 
 #include "../../compat/sconfig.h"
+#include "../../si/utility.hpp"
 
 SI_NAMESPACE_START
 
@@ -38,7 +39,7 @@ template <typename Alloc>
 
     template <typename T, typename... Args>
     static void construct(Alloc& a, T* p, Args&&... args) {
-        ::new(static_cast<void *>(p)) T(std::forward<Args>(args)...);
+        ::new(static_cast<void *>(p)) T(forward<Args>(args)...);
     }
 
     template <typename T>

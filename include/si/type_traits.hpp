@@ -6,6 +6,7 @@
 #define TYPE_TRAITS_HPP
 
 #include "../compat/sconfig.h"
+#include "stddef.hpp"
 
 #ifdef SI_NO_CONCEPTS
 namespace si::type_traits {
@@ -29,17 +30,14 @@ namespace si::concepts {
 #include "../impl/type_traits/remove_const.h"
 #include "../impl/type_traits/remove_volatile.h"
 #include "../impl/type_traits/remove_cv.h"
+#include "../impl/type_traits/remove_extent.h"
 
-namespace si {
 
-    template <typename...> using void_t = void;
-    using nullptr_t = decltype(nullptr);
-
-    template <typename T> struct remove_extent {using type = T;};
-    template <typename T> struct remove_extent<T[]> {using type = T;};
-    template <typename T, size_t N> struct remove_extent<T[N]> {using type = T;};
-
-    template <typename T> using remove_extent_t = typename remove_extent<T>::type;
+SI_NAMESPACE_START
+    // explicitly include size_t from stddef.hpp
+    using si::size_t;
+    using si::void_t;
+    using si::nullptr_t;
 
     template <typename T> struct add_const {typedef const T type;};
     template <typename T> using add_const_t = typename add_const<T>::type;
@@ -156,7 +154,7 @@ namespace si {
     template <typename T> struct is_arithmetic<is_floating_point<T>> : true_type {};
     template <typename T> constexpr bool is_arithmetic_v = is_arithmetic<T>::value;
 
-#if __has_builtin(__is_enum)
+#if SI_HAS_BUILTIN(__is_enum)
     template <typename T> struct is_enum : integral_constant<bool, __is_enum(T)> {};
 #else
     #include <type_traits>
@@ -164,7 +162,7 @@ namespace si {
 #endif
     template <typename T> constexpr bool is_enum_v = is_enum<T>::value;
 
-#ifdef __has_builtin(__is_union)
+#ifdef SI_HAS_BUILTIN(__is_union)
     template <typename T> struct is_union : integral_constant<bool, __is_union(T)> {};
 #else
     #include <type_traits>
@@ -172,7 +170,7 @@ namespace si {
 #endif
     template <typename T> constexpr bool is_union_v = is_union<T>::value;
 
-#ifdef SI_TIMER(__is_class)
+#ifdef SI_HAS_BUILTIN(__is_class)
     template <typename T> struct is_class : integral_constant<bool, __is_class(T)> {};
 #else
     #include <type_traits>
