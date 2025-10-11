@@ -11,7 +11,7 @@
 SI_NAMESPACE_START
 
 template <typename Alloc>
-    struct allocator_traits {
+struct allocator_traits {
     using allocator_type = Alloc;
     using value_type = typename Alloc::value_type;
 
