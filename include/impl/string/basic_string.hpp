@@ -11,16 +11,20 @@
 
 SI_NAMESPACE_START
 
-template <typename CharT, typename Traits = char_traits<CharT>, typename Alloc = allocator<CharT>>
+template <
+    typename CharT,
+    typename Traits = char_traits<CharT>,
+    typename Allocator = allocator<CharT>
+>
 class basic_string {
     CharT* m_data;
     size_t m_size;
     size_t m_capacity;
-    Alloc m_allocator;
+    Allocator m_allocator;
 public:
     using value_type = CharT;
     using traits_type = Traits;
-    using allocator_type = Alloc;
+    using allocator_type = Allocator;
     using size_type = size_t;
     using difference_type = ptrdiff_t;
     using reference = value_type&;
@@ -29,6 +33,12 @@ public:
     using const_pointer = const value_type*;
     using iterator = pointer;
     using const_iterator = const_pointer;
+
+    basic_string() noexcept = default; // default
+    explicit basic_string(const allocator_type& alloc) noexcept : m_data(nullptr), m_size(0), m_capacity(0),
+                                                                  m_allocator(alloc) {} // allocator aware default
+    
+
 };
 
 SI_NAMESPACE_END

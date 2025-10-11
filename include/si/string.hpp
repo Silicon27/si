@@ -6,5 +6,12 @@
 #define STRING_HPP
 
 #include "../compat/sconfig.h"
+#include "../impl/string/basic_string.hpp"
+
+SI_NAMESPACE_START
+
+using string = basic_string<char>;
+
+SI_NAMESPACE_END
 
 #endif //STRING_HPP
