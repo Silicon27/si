@@ -2,8 +2,8 @@
 // Created by David Yang on 2025-05-30.
 //
 
-#ifndef VECTOR_TPP
-#define VECTOR_TPP
+#ifndef SI_LIB_VECTOR_TPP
+#define SI_LIB_VECTOR_TPP
 
 // Vector.tpp
 namespace si {
@@ -99,4 +99,4 @@ namespace si {
     }
 } // namespace si
 
-#endif //VECTOR_TPP
+#endif //SI_LIB_VECTOR_TPP

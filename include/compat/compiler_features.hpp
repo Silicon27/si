@@ -15,27 +15,27 @@
 #   define SI_CLANG 1
 #   define SI_CLANG_VERSION (__clang_major__ * 10000 + __clang_minor__ * 100 + __clang_patchlevel__)
 #   define SI_HAS_FEATURE_TYPE_TRAITS (SI_CLANG_VERSION >= 40000) // Clang 4.0 and above
+#   define SI_MODULE_SUPPORT (SI_CLANG_VERSION >= 160000) // Clang 16.0 and above
 #else // if defined(__clang__)
 #   define SI_CLANG 0
-#   define SI_HAS_FEATURE_TYPE_TRAITS 0
 #endif // defined(__clang__)
 
-#if defined(__GNUC__) || defined(__GNUG__) && !defined(__clang__)
+#if (defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
 #   define SI_GCC 1
 #   define SI_GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 #   define SI_HAS_FEATURE_TYPE_TRAITS (SI_GCC_VERSION >= 50000) // GCC 5.0 and above
+#define SI_MODULE_SUPPORT (SI_GCC_VERSION >= 100000) // Correct for GCC ≥ 10.0
 #else // if (defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
 #   define SI_GCC 0
-#   define SI_HAS_FEATURE_TYPE_TRAITS 0
 #endif //COMPILER_FEATURES_HPP
 
 #if defined(_MSC_VER)
 #   define SI_MSVC 1
 #   define SI_MSVC_VERSION _MSC_VER
 #   define SI_HAS_FEATURE_TYPE_TRAITS (_MSC_VER >= 1900) // MSVC 2015 and above
+#   define SI_MODULE_SUPPORT (_MSC_VER >= 1920) // MSVC 2019 and above
 #else // if defined(_MSC_VER)
 #   define SI_MSVC 0
-#   define SI_HAS_FEATURE_TYPE_TRAITS 0
 #endif // defined(_MSC_VER)
 
 

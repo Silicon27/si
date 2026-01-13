@@ -3,18 +3,31 @@
 //
 
 // Vector.hpp
-#ifndef SI_VECTOR_HPP
-#define SI_VECTOR_HPP
+#ifndef SI_LIB_VECTOR_HPP
+#define SI_LIB_VECTOR_HPP
 
 #include <initializer_list>
 #include "memory.hpp"
 #include "utility.hpp"
+#include "pointer.hpp"
 
 namespace si {
 
     template <typename T>
     class vector {
     public:
+        // member types
+        using value_type = T;
+        using allocator_type = si::allocator<T>;
+        using size_type = si::size_t;
+        using difference_type = ptrdiff_t;
+        using reference = T&;
+        using const_reference = const T&;
+        using pointer = typename si::allocator_traits<allocator_type>::pointer;
+        using const_pointer = typename si::allocator_traits<allocator_type>::const_pointer;
+        using iterator = value_type*;
+
+
         vector(std::initializer_list<T> init);
         ~vector();
 
@@ -43,4 +56,4 @@ namespace si {
 
 #include "vector.tpp"  // Include the implementation for template methods
 
-#endif // SI_VECTOR_HPP
+#endif // SI_LIB_VECTOR_HPP

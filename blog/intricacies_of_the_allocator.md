@@ -36,6 +36,16 @@ Let's see how `allocate` works:
 ```cpp
 template <typname T>
 [[nodicard]] T* allocator<T>::allocate(size_t n) {
-    
+    if (n > std::numeric_limits<size_t>::max() / sizeof(T)) {
+        throw std::bad_alloc();
+    }
+    if (n == 0) {
+        return nullptr;
+    }
+    T* p = static_cast<T*>(::operator new(n * sizeof(T)));
+    return p;
+}
 ```
+
+
 

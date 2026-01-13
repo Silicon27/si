@@ -2,8 +2,8 @@
 // Created by David Yang on 2025-06-04.
 //
 
-#ifndef STDDEF_HPP
-#define STDDEF_HPP
+#ifndef SI_LIB_STDDEF_HPP
+#define SI_LIB_STDDEF_HPP
 
 #include "../compat/sconfig.h"
 
@@ -12,4 +12,4 @@
 #include "../impl/stddef/void_t.h"
 #include "../impl/stddef/nullptr_t.h"
 
-#endif //STDDEF_HPP
+#endif //SI_LIB_STDDEF_HPP
