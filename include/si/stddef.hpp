@@ -11,5 +11,6 @@
 #include "../impl/stddef/size_t.h"
 #include "../impl/stddef/void_t.h"
 #include "../impl/stddef/nullptr_t.h"
+#include "../impl/stddef/ptrdiff_t.h"
 
 #endif //SI_LIB_STDDEF_HPP
