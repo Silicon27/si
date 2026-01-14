@@ -39,7 +39,13 @@
 #endif // defined(_MSC_VER)
 
 #if defined(__cplusplus)
-#   define SI_CXX_STANDARD __cplusplus
+#   if __cplusplus == 201703L
+#       define SI_CPP17 1
+#   elif __cplusplus >= 202002L
+#       define SI_CPP20 1
+#   elif __cplusplus >= 201402L
+#       define SI_CPP14 1
+#   endif
 #endif
 
 #if SI_HAS_BUILTIN(__is_enum)

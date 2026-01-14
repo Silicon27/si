@@ -49,6 +49,7 @@ namespace si {
         }
         si::allocator_traits<si::allocator<T>>::construct(_alloc, _end, value);
         ++_end;
+        ++_num_elements;
     }
 
     template <typename T>

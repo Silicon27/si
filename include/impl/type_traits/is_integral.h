@@ -17,7 +17,7 @@ SI_NAMESPACE_START
     template <> struct is_integral<bool> : true_type {};
     template <> struct is_integral<char> : true_type {};
     template <> struct is_integral<wchar_t> : true_type {};
-#if SI_CXX_STANDARD == 202002L
+#ifdef SI_CPP20
     template <> struct is_integral<char8_t> : true_type {};
 #endif
     template <> struct is_integral<char16_t> : true_type {};

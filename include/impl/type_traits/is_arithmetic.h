@@ -11,9 +11,9 @@
 
 SI_NAMESPACE_START
 
-    template <typename T> struct is_arithmetic : false_type {};
-    template <typename T> struct is_arithmetic<is_integral<T>> : true_type {};
-    template <typename T> struct is_arithmetic<is_floating_point<T>> : true_type {};
+    template <typename T>
+    struct is_arithmetic : integral_constant<bool, is_integral<T>::value || is_floating_point<T>::value> {};
+
     template <typename T> constexpr bool is_arithmetic_v = is_arithmetic<T>::value;
 
 SI_NAMESPACE_END
