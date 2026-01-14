@@ -38,6 +38,9 @@
 #   define SI_MSVC 0
 #endif // defined(_MSC_VER)
 
+#if defined(__cplusplus)
+#   define SI_CXX_STANDARD __cplusplus
+#endif
 
 #if SI_HAS_BUILTIN(__is_enum)
 #   define SI_IS_ENUM(T) __is_enum(T)

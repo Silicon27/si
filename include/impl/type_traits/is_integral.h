@@ -14,7 +14,14 @@ SI_NAMESPACE_START
     struct is_integral : false_type {}; // base case, always false unless specified below
 
     template <> struct is_integral<int> : true_type {};
+    template <> struct is_integral<bool> : true_type {};
     template <> struct is_integral<char> : true_type {};
+    template <> struct is_integral<wchar_t> : true_type {};
+#if SI_CXX_STANDARD == 202002L
+    template <> struct is_integral<char8_t> : true_type {};
+#endif
+    template <> struct is_integral<char16_t> : true_type {};
+    template <> struct is_integral<char32_t> : true_type {};
     template <> struct is_integral<short> : true_type {};
     template <> struct is_integral<long> : true_type {};
     template <> struct is_integral<long long> : true_type {};
