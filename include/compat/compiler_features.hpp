@@ -48,6 +48,12 @@
 #   endif
 #endif
 
+#if defined(SI_CPP20)
+#   define SI_CONSTEXPR constexpr
+#else
+#   define SI_CONSTEXPR const
+#endif
+
 #if SI_HAS_BUILTIN(__is_enum)
 #   define SI_IS_ENUM(T) __is_enum(T)
 #else
