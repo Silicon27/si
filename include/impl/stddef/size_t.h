@@ -15,9 +15,9 @@ SI_NAMESPACE_START
         using size_t = unsigned __int64; // 64-bit Windows
     #elif defined(_WIN32)
         using size_t = unsigned int;     // 32-bit Windows
-    #else
-        using size_t = unsigned long;    // 32-bit Linux/macOS
     #endif
+#elif defined (__x86_64__) || defined(__aarch64__)
+    using size_t = unsigned long;    // 32-bit Linux/macOS
 #else
     using size_t = unsigned long; // Default to unsigned long for other platforms
 #endif

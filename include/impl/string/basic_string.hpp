@@ -2,8 +2,8 @@
 // Created by David Yang on 2025-10-11.
 //
 
-#ifndef BASIC_STRING_HPP
-#define BASIC_STRING_HPP
+#ifndef SI_LIB_STRING_BASIC_STRING_HPP
+#define SI_LIB_STRING_BASIC_STRING_HPP
 
 #include "../../compat/sconfig.h"
 #include "../../si/memory.hpp"
@@ -43,4 +43,4 @@ public:
 
 SI_NAMESPACE_END
 
-#endif //BASIC_STRING_HPP
+#endif //SI_LIB_STRING_BASIC_STRING_HPP

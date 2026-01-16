@@ -2,8 +2,8 @@
 // Created by David Yang on 2025-06-04.
 //
 
-#ifndef PREPROCESSOR_FEATURES_H
-#define PREPROCESSOR_FEATURES_H
+#ifndef SI_LIB_COMPAT_PREPROCESSOR_FEATURES_H
+#define SI_LIB_COMPAT_PREPROCESSOR_FEATURES_H
 
 #if defined(__has_builtin)
     #define SI_HAS_BUILTIN(x) __has_builtin(x)
@@ -29,4 +29,4 @@
     #define SI_HAS_INCLUDE(x) 0
 #endif
 
-#endif //PREPROCESSOR_FEATURES_H
+#endif //SI_LIB_COMPAT_PREPROCESSOR_FEATURES_H

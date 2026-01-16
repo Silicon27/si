@@ -2,8 +2,8 @@
 // Created by David Yang on 2025-10-11.
 //
 
-#ifndef STRING_HPP
-#define STRING_HPP
+#ifndef SI_LIB_STRING_HPP
+#define SI_LIB_STRING_HPP
 
 #include "../compat/sconfig.h"
 #include "../impl/string/basic_string.hpp"
@@ -14,4 +14,4 @@ using string = basic_string<char>;
 
 SI_NAMESPACE_END
 
-#endif //STRING_HPP
+#endif //SI_LIB_STRING_HPP

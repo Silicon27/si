@@ -2,8 +2,8 @@
 // Created by David Yang on 2025-06-02.
 //
 
-#ifndef SCONFIG_H
-#define SCONFIG_H
+#ifndef SI_LIB_COMPAT_SCONFIG_H
+#define SI_LIB_COMPAT_SCONFIG_H
 
 #include "compiler_features.hpp"
 
@@ -33,4 +33,4 @@
 #endif
 
 
-#endif //SCONFIG_H
+#endif //SI_LIB_COMPAT_SCONFIG_H

@@ -8,7 +8,7 @@
 #include "../../compat/sconfig.h"
 
 #ifdef SI_NO_CONCEPTS
-namespace si::type_traits {
+namespace si {
     template <typename T, typename = void> struct is_referenceable {static constexpr bool value = false;};
     template <typename T> struct is_referenceable<T, decltype((void)static_cast<T&(*)()>(0))> {static constexpr bool value = true;};
 }
@@ -21,6 +21,10 @@ namespace si::concepts {
     concept referenceable = requires {
         typename type_identity<T&>::type;
     };
+}
+
+namespace si {
+    
 }
 #endif // SI_NO_CONCEPTS
 

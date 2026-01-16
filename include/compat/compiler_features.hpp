@@ -2,8 +2,8 @@
 // Created by David Yang on 2025-06-02.
 //
 
-#ifndef COMPILER_FEATURES_HPP
-#define COMPILER_FEATURES_HPP
+#ifndef SI_LIB_COMPAT_COMPILER_FEATURES_HPP
+#define SI_LIB_COMPAT_COMPILER_FEATURES_HPP
 
 #include "preprocessor_features.h"
 
@@ -27,7 +27,7 @@
 #define SI_MODULE_SUPPORT (SI_GCC_VERSION >= 100000) // Correct for GCC ≥ 10.0
 #else // if (defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
 #   define SI_GCC 0
-#endif //COMPILER_FEATURES_HPP
+#endif // defined(__GNUC__) || defined(__GNUG__) && !defined(__clang__)
 
 #if defined(_MSC_VER)
 #   define SI_MSVC 1
@@ -139,4 +139,4 @@
 #endif
 
 
-#endif // COMPILER_FEATURES_HPP
+#endif // SI_LIB_COMPAT_COMPILER_FEATURES_HPP

@@ -2,8 +2,8 @@
 // Created by David Yang on 2025-10-11.
 //
 
-#ifndef CHAR_TRAITS_HPP
-#define CHAR_TRAITS_HPP
+#ifndef SI_LIB_STRING_CHAR_TRAITS_HPP
+#define SI_LIB_STRING_CHAR_TRAITS_HPP
 
 #include <cstring>
 
@@ -83,4 +83,4 @@ struct char_traits<char> {
 
 SI_NAMESPACE_END
 
-#endif //CHAR_TRAITS_HPP
+#endif //SI_LIB_STRING_CHAR_TRAITS_HPP
