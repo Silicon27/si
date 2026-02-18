@@ -51,4 +51,4 @@ bool operator!=(const allocator<T>&, const allocator<U>&) {
 SI_NAMESPACE_END
 
 
-#endif //SI_LIB_MEMORY_ALLOCTOR_H
+#endif //SI_LIB_MEMORY_ALLOCATOR_H

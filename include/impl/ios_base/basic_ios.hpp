@@ -21,7 +21,6 @@ struct basic_ios : ios_base {
     ~basic_ios() noexcept override = default;
 
 
-
 };
 
 SI_NAMESPACE_END
