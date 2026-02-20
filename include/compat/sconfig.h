@@ -32,5 +32,24 @@
 #   define SI_COMPILER_INTRINSIC___has_attribute(x) __has_attribute(x)
 #endif
 
+#if defined(__SIZEOF_POINTER__)
+#   if __SIZEOF_POINTER__ == 8
+#       define SI_ARCH_BITS 64
+#   elif __SIZEOF_POINTER__ == 4
+#       define SI_ARCH_BITS 32
+#   elif __SIZEOF_POINTER__ == 2
+#       define SI_ARCH_BITS 16
+#   endif
+#endif
+
+#ifndef SI_ARCH_BITS
+#   if defined(__LP64__) || defined(_LP64) || defined(__x86_64__) || defined(__aarch64__) || defined(_M_X64) || defined(_M_AMD64) || defined(_M_ARM64) || defined(_WIN64)
+#       define SI_ARCH_BITS 64
+#   elif defined(__i386__) || defined(_M_IX86) || defined(_WIN32)
+#       define SI_ARCH_BITS 32
+#   else
+#       define SI_ARCH_BITS 32
+#   endif
+#endif
 
 #endif //SI_LIB_COMPAT_SCONFIG_H

@@ -12,5 +12,6 @@
 
 #include "../impl/memory/allocator.h"
 #include "../impl/memory/allocator_traits.h"
+#include "../impl/memory/align.hpp"
 
 #endif //SI_LIB_MEMORY_HPP

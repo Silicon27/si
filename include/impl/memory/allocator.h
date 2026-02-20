@@ -6,6 +6,7 @@
 #define SI_LIB_MEMORY_ALLOCATOR_H
 
 #include "../../compat/sconfig.h"
+#include "../../si/stddef.hpp"
 
 SI_NAMESPACE_START
 
