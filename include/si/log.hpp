@@ -11,6 +11,7 @@
 #include "../impl/log/sink.h"
 #include "../impl/log/stdout_sink.h"
 #include "../impl/log/file_sink.h"
+#include "../impl/log/ostream_sink.h"
 #include "../impl/log/logger.h"
 
 SI_NAMESPACE_START
@@ -60,6 +61,9 @@ SI_NAMESPACE_START
         default_logger().fatal(fmt, std::forward<Args>(args)...);
     }
     inline log_builder fatal() { return default_logger().fatal(); }
+
+    inline void enable_backtrace(size_t n) { default_logger().enable_backtrace(n); }
+    inline void dump_backtrace() { default_logger().dump_backtrace(); }
 SI_NAMESPACE_END
 
 #endif //SI_LIB_LOG_HPP
