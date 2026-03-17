@@ -29,26 +29,37 @@ SI_NAMESPACE_START
     void trace(const char* fmt, Args&&... args) {
         default_logger().trace(fmt, std::forward<Args>(args)...);
     }
+    inline log_builder trace() { return default_logger().trace(); }
+
     template<typename... Args>
     void debug(const char* fmt, Args&&... args) {
         default_logger().debug(fmt, std::forward<Args>(args)...);
     }
+    inline log_builder debug() { return default_logger().debug(); }
+
     template<typename... Args>
     void info(const char* fmt, Args&&... args) {
         default_logger().info(fmt, std::forward<Args>(args)...);
     }
+    inline log_builder info() { return default_logger().info(); }
+
     template<typename... Args>
     void warn(const char* fmt, Args&&... args) {
         default_logger().warn(fmt, std::forward<Args>(args)...);
     }
+    inline log_builder warn() { return default_logger().warn(); }
+
     template<typename... Args>
     void error(const char* fmt, Args&&... args) {
         default_logger().error(fmt, std::forward<Args>(args)...);
     }
+    inline log_builder error() { return default_logger().error(); }
+
     template<typename... Args>
     void fatal(const char* fmt, Args&&... args) {
         default_logger().fatal(fmt, std::forward<Args>(args)...);
     }
+    inline log_builder fatal() { return default_logger().fatal(); }
 SI_NAMESPACE_END
 
 #endif //SI_LIB_LOG_HPP

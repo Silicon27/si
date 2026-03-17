@@ -98,6 +98,10 @@ void test_log() {
     si::info("Testing global info: %d", 42);
     si::warn("Testing global warn: %s", "hello");
     
+    // Test ostream interface
+    si::info() << "Ostream style log: " << 123 << " and " << 3.14;
+    si::error() << "Ostream error message!";
+    
     si::logger log;
     
     auto stdout_sink = std::make_shared<si::stdout_sink>();
