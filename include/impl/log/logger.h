@@ -19,46 +19,35 @@ SI_NAMESPACE_START
             sinks_.push_back(sink);
         }
 
-        void trace(const char* fmt, ...) { 
-            va_list args;
-            va_start(args, fmt);
-            log_valist(log_level::TRACE, fmt, args); 
-            va_end(args);
+        template<typename... Args>
+        void trace(const char* fmt, Args&&... args) { 
+            log(log_level::TRACE, fmt, std::forward<Args>(args)...);
         }
-        void debug(const char* fmt, ...) { 
-            va_list args;
-            va_start(args, fmt);
-            log_valist(log_level::DEBUG, fmt, args); 
-            va_end(args);
+        template<typename... Args>
+        void debug(const char* fmt, Args&&... args) { 
+            log(log_level::DEBUG, fmt, std::forward<Args>(args)...);
         }
-        void info(const char* fmt, ...) { 
-            va_list args;
-            va_start(args, fmt);
-            log_valist(log_level::INFO, fmt, args); 
-            va_end(args);
+        template<typename... Args>
+        void info(const char* fmt, Args&&... args) { 
+            log(log_level::INFO, fmt, std::forward<Args>(args)...);
         }
-        void warn(const char* fmt, ...) { 
-            va_list args;
-            va_start(args, fmt);
-            log_valist(log_level::WARN, fmt, args); 
-            va_end(args);
+        template<typename... Args>
+        void warn(const char* fmt, Args&&... args) { 
+            log(log_level::WARN, fmt, std::forward<Args>(args)...);
         }
-        void error(const char* fmt, ...) { 
-            va_list args;
-            va_start(args, fmt);
-            log_valist(log_level::ERROR, fmt, args); 
-            va_end(args);
+        template<typename... Args>
+        void error(const char* fmt, Args&&... args) { 
+            log(log_level::ERROR, fmt, std::forward<Args>(args)...);
         }
-        void fatal(const char* fmt, ...) { 
-            va_list args;
-            va_start(args, fmt);
-            log_valist(log_level::FATAL, fmt, args); 
-            va_end(args);
+        template<typename... Args>
+        void fatal(const char* fmt, Args&&... args) { 
+            log(log_level::FATAL, fmt, std::forward<Args>(args)...);
         }
 
-        void log_valist(log_level level, const char* fmt, va_list args) {
+        template<typename... Args>
+        void log(log_level level, const char* fmt, Args&&... args) {
             char buffer[1024];
-            vsnprintf(buffer, sizeof(buffer), fmt, args);
+            std::snprintf(buffer, sizeof(buffer), fmt, std::forward<Args>(args)...);
 
             for (auto& sink : sinks_) {
                 sink->log(level, buffer);
