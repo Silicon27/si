@@ -94,6 +94,10 @@ void test_utility() {
 void test_log() {
     std::cout << "Testing si::log..." << std::endl;
     
+    // Test global functions
+    si::info("Testing global info: %d", 42);
+    si::warn("Testing global warn: %s", "hello");
+    
     si::logger log;
     
     auto stdout_sink = std::make_shared<si::stdout_sink>();
