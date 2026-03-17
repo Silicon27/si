@@ -27,7 +27,7 @@ SI_NAMESPACE_START
                 default: break;
             }
 
-            std::printf("%s[%s]%s %s\n", color_code, log_level_to_string(level), log_color_to_ansi(log_color::RESET), message);
+            std::printf("%s[%-5s]%s %s\n", color_code, log_level_to_string(level), log_color_to_ansi(log_color::RESET), message);
         }
 
         void flush() override {

@@ -25,7 +25,7 @@ SI_NAMESPACE_START
         void log(log_level level, const char* message) override {
             if (!should_log(level) || !file_) return;
 
-            std::fprintf(file_, "[%s] %s\n", log_level_to_string(level), message);
+            std::fprintf(file_, "[%-5s] %s\n", log_level_to_string(level), message);
         }
 
         void flush() override {

@@ -8,6 +8,7 @@
 #include "../../compat/sconfig.h"
 #include "sink.h"
 #include <ostream>
+#include <iomanip>
 
 SI_NAMESPACE_START
     class ostream_sink : public log_sink {
@@ -16,7 +17,7 @@ SI_NAMESPACE_START
 
         void log(log_level level, const char* message) override {
             if (!should_log(level)) return;
-            os_ << "[" << log_level_to_string(level) << "] " << message << std::endl;
+            os_ << "[" << std::left << std::setw(5) << log_level_to_string(level) << "] " << message << std::endl;
         }
 
         void flush() override {
