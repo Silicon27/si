@@ -102,6 +102,19 @@ void test_log() {
     si::info() << "Ostream style log: " << 123 << " and " << 3.14;
     si::error() << "Ostream error message!";
     
+    // Test ostream_sink with std::cerr
+    auto cerr_sink = std::make_shared<si::ostream_sink>(std::cerr);
+    si::default_logger().add_sink(cerr_sink);
+    si::info("This message should also appear on cerr");
+    
+    // Test backtracing
+    si::enable_backtrace(5);
+    for (int i = 0; i < 10; ++i) {
+        si::debug("Backtrace message %d", i);
+    }
+    si::info("Now dumping backtrace (should only show messages 5-9):");
+    si::dump_backtrace();
+    
     si::logger log;
     
     auto stdout_sink = std::make_shared<si::stdout_sink>();
