@@ -10,6 +10,7 @@
 #include "../include/si/string.hpp"
 #include "../include/si/utility.hpp"
 #include "../include/si/pointer.hpp"
+#include "../include/si/log.hpp"
 
 void test_vector() {
     std::cout << "Testing si::vector..." << std::endl;
@@ -90,6 +91,37 @@ void test_utility() {
     std::cout << "si::utility tests passed!" << std::endl;
 }
 
+void test_log() {
+    std::cout << "Testing si::log..." << std::endl;
+    
+    si::logger log;
+    
+    auto stdout_sink = std::make_shared<si::stdout_sink>();
+    stdout_sink->set_level(si::log_level::TRACE);
+    log.add_sink(stdout_sink);
+    
+    auto file_sink = std::make_shared<si::file_sink>("test_log.txt");
+    file_sink->set_level(si::log_level::INFO);
+    log.add_sink(file_sink);
+    
+    log.trace("Trace message: %d", 1);
+    log.debug("Debug message: %s", "hello");
+    log.info("Info message: float %f", 3.14);
+    log.warn("Warning message");
+    log.error("Error message");
+    log.fatal("Fatal error: memory at %p", (void*)0xDEADBEEF);
+    
+    log.flush();
+    
+    if (file_sink->is_open()) {
+        std::cout << "Log written to test_log.txt" << std::endl;
+    } else {
+        std::cout << "Failed to open test_log.txt" << std::endl;
+    }
+    
+    std::cout << "si::log tests passed (visual check for colors above)!" << std::endl;
+}
+
 int main() {
     test_vector();
     test_type_traits();
@@ -97,6 +129,7 @@ int main() {
     test_memory();
     test_string();
     test_utility();
+    test_log();
     
     std::cout << "\nAll tests completed successfully!" << std::endl;
     return 0;
