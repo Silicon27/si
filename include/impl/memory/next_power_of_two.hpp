@@ -2,8 +2,8 @@
 // Created by David Yang on 2026-04-08.
 //
 
-#ifndef SI_LIB_MEMORY_NEXT_POWER_OF_2_HPP
-#define SI_LIB_MEMORY_NEXT_POWER_OF_2_HPP
+#ifndef SI_LIB_MEMORY_NEXT_POWER_OF_TWO_HPP
+#define SI_LIB_MEMORY_NEXT_POWER_OF_TWO_HPP
 
 #include "../../compat/sconfig.h"
 #include "si/type_traits.hpp"
@@ -26,4 +26,4 @@ namespace si {
     }
 }
 
-#endif //SI_LIB_MEMORY_NEXT_POWER_OF_2_HPP
+#endif //SI_LIB_MEMORY_NEXT_POWER_OF_TWO_HPP

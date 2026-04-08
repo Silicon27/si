@@ -13,5 +13,6 @@
 #include "../impl/memory/allocator.h"
 #include "../impl/memory/allocator_traits.h"
 #include "../impl/memory/align.hpp"
+#include "../impl/memory/next_power_of_two.hpp"
 
 #endif //SI_LIB_MEMORY_HPP
