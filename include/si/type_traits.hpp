@@ -26,6 +26,7 @@
 #include "../impl/type_traits/is_integral.h"
 #include "../impl/type_traits/is_floating_point.h"
 #include "../impl/type_traits/is_arithmetic.h"
+#include "../impl/type_traits/is_unsigned.h"
 #include "../impl/type_traits/is_enum.h"
 #include "../impl/type_traits/is_union.h"
 #include "../impl/type_traits/is_class.h"

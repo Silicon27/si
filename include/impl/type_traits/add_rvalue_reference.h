@@ -11,7 +11,7 @@
 SI_NAMESPACE_START
 
 #ifdef SI_NO_CONCEPTS
-    template <typename T, bool = type_traits::is_referenceable<T>::value> struct add_rvalue_reference { using type = T; };
+    template <typename T, bool = is_referenceable<T>::value> struct add_rvalue_reference { using type = T; };
     template <typename T> struct add_rvalue_reference<T, true> {typedef T&& type;};
     template <typename T> using add_rvalue_reference_t = typename add_rvalue_reference<T>::type;
 #else
