@@ -7,6 +7,7 @@
 
 #include "../compat/sconfig.h"
 #include "../impl/string/basic_string.hpp"
+#include "string_view.hpp"
 
 SI_NAMESPACE_START
 

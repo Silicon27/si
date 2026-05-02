@@ -12,6 +12,7 @@
 
 #include "../impl/memory/allocator.h"
 #include "../impl/memory/allocator_traits.h"
+#include "../impl/memory/bump_pointer_allocator.hpp"
 #include "../impl/memory/align.hpp"
 #include "../impl/memory/next_power_of_two.hpp"
 
